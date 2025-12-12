@@ -5,7 +5,7 @@
 
 Name:		python-pendulum
 Version:	3.1.0
-Release:	1
+Release:	2
 Summary:	Python datetimes made easy
 URL:		https://pypi.org/project/pendulum/
 License:	MIT
