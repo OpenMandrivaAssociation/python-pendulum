@@ -63,6 +63,9 @@ EOF
 export CFLAGS="%{optflags}"
 export LDFLAGS="%{ldflags} -lpython%{pyver}"
 export CARGO_HOME=$PWD/rust/.cargo
+# Vendored PyO3 0.27.2 stops at Python 3.14. This is upstream's
+# escape hatch: build the stable ABI and accept 3.15.
+export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
 %py_build
 
 pushd rust
