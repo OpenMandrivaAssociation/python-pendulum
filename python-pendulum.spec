@@ -12,6 +12,8 @@ License:	MIT
 Group:		Development/Python
 Source0:	https://github.com/python-pendulum/pendulum/archive/%{version}/%{oname}-%{version}.tar.gz
 Source1:	%{module}-%{version}-vendor.tar.xz
+# PyO3 0.27 rejects Python 3.15. 0.29 keeps the full datetime API.
+Patch0:		pendulum-3.2.0-pyo3-0.29.patch
 
 BuildSystem:	python
 BuildRequires:  cargo
@@ -63,9 +65,9 @@ EOF
 export CFLAGS="%{optflags}"
 export LDFLAGS="%{ldflags} -lpython%{pyver}"
 export CARGO_HOME=$PWD/rust/.cargo
-# Vendored PyO3 0.27.2 stops at Python 3.14. This is upstream's
-# escape hatch: build the stable ABI and accept 3.15.
-export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+# The crate sets lto = "fat", which aborts when rpm also passes
+# -C linker-plugin-lto.
+export CARGO_PROFILE_RELEASE_LTO=off
 %py_build
 
 pushd rust
