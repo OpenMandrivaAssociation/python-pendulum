@@ -35,7 +35,7 @@ BuildRequires:	python%{pyver}dist(pre-commit)
 BuildRequires:	python%{pyver}dist(pytest)
 BuildRequires:	python%{pyver}dist(pytest-cov)
 BuildRequires:	python%{pyver}dist(six)
-BuildRequires:	python%{pyver}dist(time-machine) >= 2.6.0
+BuildRequires:	python%{pyver}dist(time-machine) >= 3.3.1
 BuildRequires:	python%{pyver}dist(typing-extensions)
 BuildRequires:	patchelf
 %endif
